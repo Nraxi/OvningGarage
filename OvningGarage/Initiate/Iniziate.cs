@@ -31,27 +31,40 @@ namespace OvningGarage.Initiate
             garageHandler.ListAllVehicles();
 
             // Vänta på användarens bekräftelse för att fortsätta
-            Console.WriteLine("Press Enter to proceed to remove vehicles...");
+            Console.WriteLine("Press Enter to proceed...");
             Console.ReadLine();
 
-            // Ta bort några fordon från garaget
-            garageHandler.RemoveVehicleFromGarage(1);
-            garageHandler.RemoveVehicleFromGarage(2);
+            // Kontrollera om det finns några fordon kvar i garaget
+            while (!garageHandler.CheckGarageEmpty())
+            {
+                Console.WriteLine("There are vehicles in the garage. Please remove them before proceeding.");
+                Console.WriteLine("Enter the number tha u want to del");
+                var input = Console.ReadLine();
+                int parkingTicketNr;
+                if (int.TryParse(input, out parkingTicketNr))
+                {
+                    garageHandler.RemoveVehicle(parkingTicketNr);
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter a valid parking ticket number.");
+                    continue; // Gå tillbaka till början av loopen för att låta användaren försöka igen
+                }
+            }
+        
 
-            // Kontrollera om garaget är tomt
+            // Om garaget är tomt och antalet platser är angivet, starta Startup
             if (capacity > 0)
             {
-                Console.WriteLine("The garage is empty.");
-                // Om garaget är tomt och antalet platser är angivet, starta Startup
-                if (capacity > 0)
-                {
-                    Console.WriteLine("Redirecting to Startup...");
-                    StartStartup();
-                }
+                Console.WriteLine("Redirecting to Startup...");
+                Console.ReadKey();
+                StartStartup();
             }
             else
             {
-                Console.WriteLine("The garage is not empty.");
+                Console.WriteLine("Garage is empty...");
+                Console.ReadKey();
+                StartStartup();
             }
         }
 

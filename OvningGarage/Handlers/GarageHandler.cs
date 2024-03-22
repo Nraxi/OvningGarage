@@ -1,11 +1,10 @@
-﻿using OvningGarage.Interfaces;
-using OvningGarage.Models;
+﻿using OvningGarage.Models;
 
 namespace OvningGarage.Handlers
 {
-    public class GarageHandler 
+    public class GarageHandler
     {
-        private Garage <Vehicle>garage;
+        private Garage<Vehicle> garage;
         private int carCount;
         private int motorcycleCount;
         private int airplaneCount;
@@ -59,12 +58,54 @@ namespace OvningGarage.Handlers
             boatCount++;
         }
 
-       
 
-        public bool RemoveVehicleFromGarage(int parkingTicketNr)
+        public void RemoveVehicle(int parkingTicketNr)
         {
-            return garage.RemoveVehicle(parkingTicketNr);
+            bool vehicleRemoved = false;
+
+            foreach (var vehicle in garage)
+            {
+                if (vehicle.ParkingTicketNr == parkingTicketNr)
+                {
+                    garage.RemoveVehicle(parkingTicketNr);
+                    UpdateCounts(vehicle); // Update vehicle counts
+                    vehicleRemoved = true;
+                    break;
+                }
+            }
+
+            if (!vehicleRemoved)
+            {
+                Console.WriteLine("Vehicle with the specified parking ticket number not found");
+                //throw new ArgumentException("Vehicle with the specified parking ticket number not found.");
+            }
         }
+
+        private void UpdateCounts(Vehicle vehicle)
+        {
+            if (vehicle is Car)
+            {
+                carCount--;
+            }
+            else if (vehicle is Motorcycle)
+            {
+                motorcycleCount--;
+            }
+            else if (vehicle is Airplane)
+            {
+                airplaneCount--;
+            }
+            else if (vehicle is Bus)
+            {
+                busCount--;
+            }
+            else if (vehicle is Boat)
+            {
+                boatCount--;
+            }
+        }
+
+
 
         public void ListAllVehicles()
         {
@@ -75,7 +116,12 @@ namespace OvningGarage.Handlers
             }
         }
 
-            public void CheckGarageEmpty()
+        public bool CheckGarageEmpty()
+        {
+            return garage.Count() == 0;
+        }
+
+        public void CheckGarage()
         {
             if (garage.Count() == 0)
             {

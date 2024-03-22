@@ -26,22 +26,22 @@ namespace OvningGarage.Models
             }
             else
             {
-                throw new InvalidOperationException("The Garage is full.");
+               Console.WriteLine("The Garage is full.");
             }
         }
 
         public bool RemoveVehicle(int parkingTicketNr)
         {
-            if (parkingTicketNr >= 0 && parkingTicketNr < count)
+            for (int i = 0; i < vehicles.Length; i++)
             {
-                vehicles[parkingTicketNr] = default!;
-                count--;
-                return true;
+                if (vehicles[i] != null && vehicles[i].ParkingTicketNr == parkingTicketNr)
+                {
+                    vehicles[i] = null!; // Mark the slot as null
+                    count--;
+                    return true;
+                }
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         public IEnumerator<T> GetEnumerator()
