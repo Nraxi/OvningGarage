@@ -3,9 +3,9 @@ using OvningGarage.Models;
 
 namespace OvningGarage.Handlers
 {
-    public class GarageHandler<T> : IHandler<T> where T : Vehicle
+    public class GarageHandler 
     {
-        private Garage<T> garage;
+        private Garage <Vehicle>garage;
         private int carCount;
         private int motorcycleCount;
         private int airplaneCount;
@@ -15,7 +15,7 @@ namespace OvningGarage.Handlers
 
         public GarageHandler(int capacity)
         {
-            garage = new Garage<T>(capacity);
+            garage = new Garage<Vehicle>(capacity);
             carCount = 0;
             motorcycleCount = 0;
             airplaneCount = 0;
@@ -24,52 +24,49 @@ namespace OvningGarage.Handlers
         }
 
 
-        public void AddVehicleToGarage(string vehicleType, string name, string regNr, int parkingTicketNr, int numberOfEngines, int cylinderVolume, string fuelType, int numberOfSeats, double length)
+        public void AddCarToGarage(string name, string regNr, int parkingTicketNr, string fuelType, int cylinderVolume)
         {
-            T vehicle;
-            switch (vehicleType.ToLower())
-            {
-                case "car":
-                    vehicle = (T)(object)new Car(name, regNr, parkingTicketNr, fuelType, cylinderVolume);
-                    carCount++;
-                    break;
-                case "motorcycle":
-                    vehicle = (T)(object)new Motorcycle(name, regNr, parkingTicketNr, fuelType, numberOfSeats);
-                    motorcycleCount++;
-                    break;
-                case "airplane":
-                    vehicle = (T)(object)new Airplane(name, regNr, parkingTicketNr, numberOfEngines, cylinderVolume, fuelType);
-                    airplaneCount++;
-                    break;
-                case "bus":
-                    vehicle = (T)(object)new Bus(name, regNr, parkingTicketNr, length, fuelType);
-                    busCount++;
-                    break;
-                case "boat":
-                    vehicle = (T)(object)new Boat(name, regNr, parkingTicketNr, numberOfEngines, numberOfSeats, length);
-                    boatCount++;
-                    break;
-                default:
-                    throw new ArgumentException("Invalid vehicle type.");
-            }
-
-            garage.AddVehicle(parkingTicketNr, vehicle);
+            Car car = new Car(name, regNr, parkingTicketNr, fuelType, cylinderVolume);
+            garage.AddVehicle(parkingTicketNr, car);
+            carCount++;
         }
 
-        public void InitialPreDecideGarage(List<(string vehicleType, string name, string regNr, int parkingTicketNr, int numberOfEngines, int cylinderVolume, string fuelType, int numberOfSeats, double length)> initialVehicles)
+        public void AddMotorcycleToGarage(string name, string regNr, int parkingTicketNr, string fuelType, int numberOfSeats)
         {
-            foreach (var vehicleParams in initialVehicles)
-            {
-                AddVehicleToGarage(vehicleParams.vehicleType, vehicleParams.name, vehicleParams.regNr, vehicleParams.parkingTicketNr, vehicleParams.numberOfEngines, vehicleParams.cylinderVolume, vehicleParams.fuelType, vehicleParams.numberOfSeats, vehicleParams.length);
-            }
+            Motorcycle motorcycle = new Motorcycle(name, regNr, parkingTicketNr, fuelType, numberOfSeats);
+            garage.AddVehicle(parkingTicketNr, motorcycle);
+            motorcycleCount++;
         }
+
+        public void AddAirplaneToGarage(string name, string regNr, int parkingTicketNr, int numberOfEngines, int cylinderVolume, string fuelType)
+        {
+            Airplane airplane = new Airplane(name, regNr, parkingTicketNr, numberOfEngines, cylinderVolume, fuelType);
+            garage.AddVehicle(parkingTicketNr, airplane);
+            airplaneCount++;
+        }
+
+        public void AddBusToGarage(string name, string regNr, int parkingTicketNr, double length, string fuelType)
+        {
+            Bus bus = new Bus(name, regNr, parkingTicketNr, length, fuelType);
+            garage.AddVehicle(parkingTicketNr, bus);
+            busCount++;
+        }
+
+        public void AddBoatToGarage(string name, string regNr, int parkingTicketNr, int numberOfEngines, int numberOfSeats, double length)
+        {
+            Boat boat = new Boat(name, regNr, parkingTicketNr, numberOfEngines, numberOfSeats, length);
+            garage.AddVehicle(parkingTicketNr, boat);
+            boatCount++;
+        }
+
+       
 
         public bool RemoveVehicleFromGarage(int parkingTicketNr)
         {
             return garage.RemoveVehicle(parkingTicketNr);
         }
 
-        public void ListAllVehicles(Garage<T> garage)
+        public void ListAllVehicles()
         {
             Console.WriteLine("List of all vehicles in the garage:");
             foreach (var vehicle in garage)
@@ -78,7 +75,7 @@ namespace OvningGarage.Handlers
             }
         }
 
-        public void CheckGarageEmpty()
+            public void CheckGarageEmpty()
         {
             if (garage.Count() == 0)
             {
@@ -96,7 +93,7 @@ namespace OvningGarage.Handlers
             }
         }
 
-        public T FindVehicleByRegNr(string regNr)
+        public Vehicle FindVehicleByRegNr(string regNr)
         {
             foreach (var vehicle in garage)
             {
