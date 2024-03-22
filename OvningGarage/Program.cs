@@ -1,11 +1,16 @@
-﻿namespace OvningGarage
+﻿using OvningGarage.Initiate;
+using OvningGarage.Interfaces;
+
+namespace OvningGarage
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
-            
+            IUI ui = new ConsoleUI();
+            var startup = new Startup(ui);
+            startup.Run();
+
         }
     }
 }
