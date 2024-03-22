@@ -31,22 +31,28 @@ namespace OvningGarage.Handlers
             {
                 case "car":
                     vehicle = (T)(object)new Car(name, regNr, parkingTicketNr, fuelType, cylinderVolume);
+                    carCount++;
                     break;
                 case "motorcycle":
                     vehicle = (T)(object)new Motorcycle(name, regNr, parkingTicketNr, fuelType, numberOfSeats);
+                    motorcycleCount++;
                     break;
                 case "airplane":
                     vehicle = (T)(object)new Airplane(name, regNr, parkingTicketNr, numberOfEngines, cylinderVolume, fuelType);
+                    airplaneCount++;
                     break;
                 case "bus":
                     vehicle = (T)(object)new Bus(name, regNr, parkingTicketNr, length, fuelType);
+                    busCount++;
                     break;
                 case "boat":
                     vehicle = (T)(object)new Boat(name, regNr, parkingTicketNr, numberOfEngines, numberOfSeats, length);
+                    boatCount++;
                     break;
                 default:
                     throw new ArgumentException("Invalid vehicle type.");
             }
+
             garage.AddVehicle(parkingTicketNr, vehicle);
         }
 
