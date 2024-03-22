@@ -46,7 +46,7 @@ public class ConsoleUI : IUI
 
     public void DisplayInitialPreDecideGarageMenu()
     {
-        HandleInitialPreDecideGarageMenu.VehicleMenu(this);
+        HandleInitialPreDecideGarageMenu.VehicleMenu();
     }
 
 

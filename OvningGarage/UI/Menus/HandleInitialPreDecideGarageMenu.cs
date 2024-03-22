@@ -6,7 +6,7 @@ namespace OvningGarage.UI.Menus
 {
     public class HandleInitialPreDecideGarageMenu
     {
-        public static void VehicleMenu(IUI ui)
+        public static void VehicleMenu()
         {
             string input;
             while (true)
