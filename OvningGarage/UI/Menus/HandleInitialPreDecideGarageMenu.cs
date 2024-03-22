@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using OvningGarage.Interfaces;
 
 namespace OvningGarage.UI.Menus
@@ -20,9 +21,9 @@ namespace OvningGarage.UI.Menus
                 switch (input)
                 {
                     case "1":
-                        Console.WriteLine("Enter pre-decide the garage contents");
-                        var initialVehicles = ui.GetInitialVehiclesInput();
-                        ui.InitialPreDecideGarage(initialVehicles);
+                        Console.WriteLine("List of List");
+
+                       
                         Console.WriteLine("Garage initialized with pre-decided contents.");
                         break;
                     case "0":

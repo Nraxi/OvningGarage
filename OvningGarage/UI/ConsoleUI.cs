@@ -49,25 +49,5 @@ public class ConsoleUI : IUI
         HandleInitialPreDecideGarageMenu.VehicleMenu(this);
     }
 
-    public void InitialPreDecideGarage(List<(string vehicleType, string name, string regNr, int parkingTicketNr, int numberOfEngines, int cylinderVolume, string fuelType, int numberOfSeats, double length)> initialVehicles)
-    {
-        // Implementation for initializing garage with initial vehicles
-        Console.WriteLine("Initializing garage with initial vehicles:");
-        foreach (var vehicleParams in initialVehicles)
-        {
-            Console.WriteLine($"Vehicle Type: {vehicleParams.vehicleType}, Name: {vehicleParams.name}, Registration Number: {vehicleParams.regNr}");
-            // You might want to call your handler method here to add the vehicle to the garage
-            // For example: garageHandler.AddVehicleToGarage(vehicleParams.vehicleType, vehicleParams.name, vehicleParams.regNr, vehicleParams.parkingTicketNr, vehicleParams.numberOfEngines, vehicleParams.cylinderVolume, vehicleParams.fuelType, vehicleParams.numberOfSeats, vehicleParams.length);
-        }
-        Console.WriteLine("Initialization complete.");
-    }
 
-    public List<(string vehicleType, string name, string regNr, int parkingTicketNr, int numberOfEngines, int cylinderVolume, string fuelType, int numberOfSeats, double length)> GetInitialVehiclesInput()
-    {
-        List<(string vehicleType, string name, string regNr, int parkingTicketNr, int numberOfEngines, int cylinderVolume, string fuelType, int numberOfSeats, double length)> initialVehicles = new List<(string vehicleType, string name, string regNr, int parkingTicketNr, int numberOfEngines, int cylinderVolume, string fuelType, int numberOfSeats, double length)>();
-
-        // Code to get input for initial vehicles from the user...
-
-        return initialVehicles;
-    }
 }

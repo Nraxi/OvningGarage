@@ -48,10 +48,6 @@ namespace OvningGarage.Initiate
                         break;
                     case "6":
                         ui.DisplayInitialPreDecideGarageMenu();
-                        // Implement logic for initializing the garage with initial vehicles
-                        var initialVehicles = ui.GetInitialVehiclesInput();
-                        // Initialize garage with initial vehicles
-                        // Example: garageHandler.InitialPreDecideGarage(initialVehicles);
                         break;
                     case "0":
                         exit = true;

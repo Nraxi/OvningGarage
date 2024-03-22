@@ -12,8 +12,6 @@ namespace OvningGarage.Interfaces
         void DisplayFindVehicleByRegNrMenu();
         void DisplayInitialPreDecideGarageMenu();
 
-        List<(string vehicleType, string name, string regNr, int parkingTicketNr, int numberOfEngines, int cylinderVolume, string fuelType, int numberOfSeats, double length)> GetInitialVehiclesInput();
-
-        void InitialPreDecideGarage(List<(string vehicleType, string name, string regNr, int parkingTicketNr, int numberOfEngines, int cylinderVolume, string fuelType, int numberOfSeats, double length)> initialVehicles);
+      
     }
 }
