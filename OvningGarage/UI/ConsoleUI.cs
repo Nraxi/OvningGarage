@@ -30,13 +30,13 @@ public class ConsoleUI : IUI
     public void DisplayListAllVehiclesMenu()
     {
         HandleListAllVehiclesMenu.VehicleMenu();
-        // No additional input required
+   
     }
 
     public void DisplayCheckGarageEmptyMenu()
     {
        HandleCheckGarageEmptyMenu.VehicleMenu();
-        // No additional input required
+     
     }
 
     public void DisplayFindVehicleByRegNrMenu()
