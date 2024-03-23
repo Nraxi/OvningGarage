@@ -2,10 +2,6 @@
 using OvningGarage.Interfaces;
 using OvningGarage.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OvningGarage.Initiate
 {
@@ -29,7 +25,11 @@ namespace OvningGarage.Initiate
 
             // Visa alla fordon i garaget
             garageHandler.ListAllVehicles();
+          
 
+            // Räkna antalet lediga platser i garaget
+            int availableSpots = capacity - garageHandler.TotalVehiclesCount();
+            Console.WriteLine($"The total Capacity of the Garage is now: {availableSpots}");
             // Vänta på användarens bekräftelse för att fortsätta
             Console.WriteLine("Press Enter to proceed...");
             Console.ReadLine();
@@ -38,12 +38,13 @@ namespace OvningGarage.Initiate
             while (!garageHandler.CheckGarageEmpty())
             {
                 Console.WriteLine("There are vehicles in the garage. Please remove them before proceeding.");
-                Console.WriteLine("Enter the number tha u want to del");
+                Console.WriteLine("Enter the number that you want to delete:");
                 var input = Console.ReadLine();
                 int parkingTicketNr;
                 if (int.TryParse(input, out parkingTicketNr))
                 {
                     garageHandler.RemoveVehicle(parkingTicketNr);
+                    availableSpots++;
                 }
                 else
                 {
@@ -51,20 +52,24 @@ namespace OvningGarage.Initiate
                     continue; // Gå tillbaka till början av loopen för att låta användaren försöka igen
                 }
             }
-        
+
+            // Uppdatera antalet lediga platser i garaget efter att fordon har tagits bort
+            availableSpots = capacity - garageHandler.TotalVehiclesCount();
 
             // Om garaget är tomt och antalet platser är angivet, starta Startup
-            if (capacity > 0)
+            if (availableSpots == capacity)
             {
+                Console.WriteLine($"The total Capacity of the Garage is now: {availableSpots}");
+                Console.WriteLine("Press Enter to proceed...");
+                Console.ReadLine();
                 Console.WriteLine("Redirecting to Startup...");
                 Console.ReadKey();
                 StartStartup();
             }
             else
             {
-                Console.WriteLine("Garage is empty...");
+                Console.WriteLine("Garage is not empty. Please remove remaining vehicles.");
                 Console.ReadKey();
-                StartStartup();
             }
         }
 

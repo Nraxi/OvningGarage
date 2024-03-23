@@ -1,4 +1,5 @@
 ﻿using OvningGarage.Models;
+using System.Linq;
 
 namespace OvningGarage.Handlers
 {
@@ -21,6 +22,12 @@ namespace OvningGarage.Handlers
             busCount = 0;
             boatCount = 0;
         }
+
+        public int TotalVehiclesCount()
+        {
+            return garage.Count();
+        }
+
 
 
         public void AddCarToGarage(string name, string regNr, int parkingTicketNr, string fuelType, int cylinderVolume)
