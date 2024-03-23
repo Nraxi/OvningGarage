@@ -13,7 +13,23 @@ namespace OvningGarage.Initiate
 
             // Be användaren att ange antalet platser i garaget
             Console.WriteLine("Please enter the number of parking spots in the garage:");
-            int capacity = int.Parse(Console.ReadLine()!);
+            int capacity;
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out capacity))
+                {
+                    Console.WriteLine("Invalid input. Please enter a valid integer.");
+                    continue;
+                }
+
+                if (capacity <= 3)
+                {
+                    Console.WriteLine("Capacity must be greater than 3. Please enter a higher value.");
+                    continue;
+                }
+
+                break;
+            }
 
             // Skapa en instans av GarageHandler med angivet kapacitet
             var garageHandler = new GarageHandler(capacity);
