@@ -21,7 +21,7 @@ namespace OvningGarage.UI.Menus
                 {
                     case "1":
                         Console.WriteLine("Enter registration number:");
-                        string regNr = Console.ReadLine()!;
+                        string regNr = Console.ReadLine()?.ToUpper()!;
                         var vehicle = garageHandler.FindVehicleByRegNr(regNr);
                         if (vehicle != null)
                         {
