@@ -12,6 +12,11 @@
             RegNr = regNr;
             ParkingTicketNr = parkingTicketNr;
         }
+
+        public virtual string GetVehicleInfo()
+        {
+            return $"Name: {Name}, Registration Number: {RegNr}, Parking Ticket Number: {ParkingTicketNr}";
+        }
     }
 
     public class Airplane : Vehicle
@@ -27,6 +32,11 @@
             CylinderVolume = cylinderVolume;
             FuelType = fuelType;
         }
+
+        public override string GetVehicleInfo()
+        {
+            return base.GetVehicleInfo() + $", Number of Engines: {NumberOfEngines}, Cylinder Volume: {CylinderVolume}, Fuel Type: {FuelType}";
+        }
     }
 
     public class Motorcycle : Vehicle
@@ -39,6 +49,11 @@
         {
             FuelType = fuelType;
             NumberOfSeats = numberOfSeats;
+        }
+
+        public override string GetVehicleInfo()
+        {
+            return base.GetVehicleInfo() + $", Fuel Type: {FuelType}, Number of Seats: {NumberOfSeats}";
         }
     }
 
@@ -53,6 +68,11 @@
             FuelType = fuelType;
             CylinderVolume = cylinderVolume;
         }
+
+        public override string GetVehicleInfo()
+        {
+            return base.GetVehicleInfo() + $", Fuel Type: {FuelType}, Cylinder Volume: {CylinderVolume}";
+        }
     }
 
     public class Bus : Vehicle
@@ -65,6 +85,11 @@
         {
             Length = length;
             FuelType = fuelType;
+        }
+
+        public override string GetVehicleInfo()
+        {
+            return base.GetVehicleInfo() + $", Fuel Type: {FuelType}, Length: {Length}";
         }
     }
 
@@ -80,6 +105,11 @@
             NumberOfEngines = numberOfEngines;
             NumberOfSeats = numberOfSeats;
             Length = length;
+        }
+
+        public override string GetVehicleInfo()
+        {
+            return base.GetVehicleInfo() + $", Number of Engines: {NumberOfEngines}, Number of Seats: {NumberOfSeats}, Length: {Length}";
         }
     }
 }

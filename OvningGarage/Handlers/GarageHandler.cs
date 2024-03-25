@@ -5,6 +5,7 @@ namespace OvningGarage.Handlers
 {
     public class GarageHandler
     {
+       
         private Garage<Vehicle> garage;
         private int carCount;
         private int motorcycleCount;
