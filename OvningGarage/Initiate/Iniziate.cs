@@ -11,6 +11,18 @@ namespace OvningGarage.Initiate
         {
             Console.WriteLine("Welcome to the Garage Initialization!");
 
+            // Be användaren att ange om de vill hoppa över initialiseringen
+            Console.WriteLine("Do you want to skip the initialization and go directly to startup? (Yes/No)");
+            string skipInput = Console.ReadLine()!;
+            if (skipInput.ToLower() == "yes")
+            {
+                Console.WriteLine("Skipping initialization. Redirecting to Startup...");
+                Console.ReadKey();
+                StartStartup();
+                return;
+            }
+
+
             // Be användaren att ange antalet platser i garaget
             Console.WriteLine("Please enter the number of parking spots in the garage:");
             int capacity;
