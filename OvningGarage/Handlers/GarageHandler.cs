@@ -6,7 +6,7 @@ namespace OvningGarage.Handlers
 {
     public class GarageHandler
     {
-       
+
         private Garage<Vehicle> garage;
         private int carCount;
         private int motorcycleCount;
@@ -43,15 +43,15 @@ namespace OvningGarage.Handlers
             Car car = new Car(name, regNr, fuelType, cylinderVolume, parkingTicketNr);
             garage.AddVehicle(car);
             carCount++;
-           
+
         }
 
         public void AddMotorcycleToGarage(string name, string regNr, string fuelType, int numberOfSeats, int parkingTicketNr)
         {
-            Motorcycle motorcycle = new Motorcycle(name, regNr, fuelType, numberOfSeats,parkingTicketNr);
+            Motorcycle motorcycle = new Motorcycle(name, regNr, fuelType, numberOfSeats, parkingTicketNr);
             garage.AddVehicle(motorcycle);
             motorcycleCount++;
-            
+
         }
 
         public void AddAirplaneToGarage(string name, string regNr, int numberOfEngines, int cylinderVolume, string fuelType, int parkingTicketNr)
@@ -59,7 +59,7 @@ namespace OvningGarage.Handlers
             Airplane airplane = new Airplane(name, regNr, numberOfEngines, cylinderVolume, fuelType, parkingTicketNr);
             garage.AddVehicle(airplane);
             airplaneCount++;
-            
+
         }
 
         public void AddBusToGarage(string name, string regNr, double length, string fuelType, int parkingTicketNr)
@@ -67,7 +67,7 @@ namespace OvningGarage.Handlers
             Bus bus = new Bus(name, regNr, length, fuelType, parkingTicketNr);
             garage.AddVehicle(bus);
             busCount++;
-            
+
         }
 
         public void AddBoatToGarage(string name, string regNr, int numberOfEngines, int numberOfSeats, double length, int parkingTicketNr)
@@ -75,7 +75,7 @@ namespace OvningGarage.Handlers
             Boat boat = new Boat(name, regNr, numberOfEngines, numberOfSeats, length, parkingTicketNr);
             garage.AddVehicle(boat);
             boatCount++;
-            
+
         }
 
 
@@ -132,23 +132,30 @@ namespace OvningGarage.Handlers
 
         public void ListAllVehicles()
         {
-            Console.WriteLine("List of all vehicles in the garage:");
-            int currentParkingTicketNr = 1;
-
-            foreach (var vehicle in garage)
+            if (garage.Count == 0)
             {
-                Console.WriteLine($"Ticket Number: {currentParkingTicketNr} Name: {vehicle.Name}, Registration Number: {vehicle.RegNr}");
-                currentParkingTicketNr++;
+                Console.WriteLine("The garage is empty.");
+            }
+            else
+            {
+                Console.WriteLine("List of all vehicles in the garage:");
+                int currentParkingTicketNr = 1;
+
+                foreach (var vehicle in garage)
+                {
+                    Console.WriteLine($"Ticket Number: {currentParkingTicketNr} Name: {vehicle.Name}, Registration Number: {vehicle.RegNr}");
+                    currentParkingTicketNr++;
+                }
             }
         }
 
-        public int GetCapacity=>garage.Capacity;
+        public int GetCapacity => garage.Capacity;
 
         public bool CheckGarageEmpty()
         {
             return garage.Count == 0;
         }
- 
+
         public void CheckGarage()
         {
             if (garage.Count == 0)
@@ -157,17 +164,19 @@ namespace OvningGarage.Handlers
             }
             else
             {
-                Console.WriteLine("The garage is not empty.");
+                Console.WriteLine("The garage is not empty.\n");
                 Console.WriteLine($"Total number of vehicles: {garage.Count()}");
                 Console.WriteLine($"Number of cars: {carCount}");
                 Console.WriteLine($"Number of motorcycles: {motorcycleCount}");
                 Console.WriteLine($"Number of airplanes: {airplaneCount}");
                 Console.WriteLine($"Number of buses: {busCount}");
                 Console.WriteLine($"Number of boats: {boatCount}");
+                Console.WriteLine($"\n");
+                ListAllVehicles();
             }
         }
 
-        public Vehicle FindVehicleByRegNr(string regNr)
+        public Vehicle? FindVehicleByRegNr(string regNr)
         {
             foreach (var vehicle in garage)
             {
@@ -176,7 +185,9 @@ namespace OvningGarage.Handlers
                     return vehicle;
                 }
             }
-            throw new ArgumentException("Vehicle with the specified registration number not found.");
+
+            Console.WriteLine("Vehicle with the specified registration number not found.");
+            return null;
         }
     }
 }

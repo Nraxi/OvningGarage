@@ -12,7 +12,8 @@ namespace OvningGarage.UI.Menus
             {
                 Console.Clear();
                 Console.WriteLine("List All Vehicles Menu:");
-                Console.WriteLine("1. Press 1, to get List");
+                Console.WriteLine("1. To get a List");
+                Console.WriteLine("2. to get a detailed List");
                 Console.WriteLine("0. Back to Main Menu");
 
                 input = Console.ReadLine()!;
@@ -22,6 +23,11 @@ namespace OvningGarage.UI.Menus
                     case "1":
                         Console.WriteLine("List of List");
                         garageHandler.ListAllVehicles();
+
+                        
+                        break;
+                    case "2":
+                        garageHandler.CheckGarage();
                         break;
                     case "0":
                         return;

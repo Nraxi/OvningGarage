@@ -42,7 +42,7 @@ namespace OvningGarage.Initiate
                         // Implementera logiken för att kontrollera om garaget är tomt
                         break;
                     case "5":
-                        ui.DisplayFindVehicleByRegNrMenu();
+                        ui.DisplayFindVehicleByRegNrMenu(garageHandler);
                         // Implementera logiken för att hitta fordon efter registreringsnummer
                         break;
                     case "6":

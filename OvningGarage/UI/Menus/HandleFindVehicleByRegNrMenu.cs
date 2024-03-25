@@ -5,7 +5,7 @@ namespace OvningGarage.UI.Menus
 {
     public class HandleFindVehicleByRegNrMenu
     {
-        public static void VehicleMenu()
+        public static void VehicleMenu(GarageHandler garageHandler)
         {
             string input;
             while (true)
@@ -21,8 +21,17 @@ namespace OvningGarage.UI.Menus
                 {
                     case "1":
                         Console.WriteLine("Enter registration number:");
-                        Console.ReadLine();
-                        Console.WriteLine("Veichle INFO...");
+                        string regNr = Console.ReadLine()!;
+                        var vehicle = garageHandler.FindVehicleByRegNr(regNr);
+                        if (vehicle != null)
+                        {
+                            Console.WriteLine("Vehicle INFO:");
+                            Console.WriteLine(vehicle.GetVehicleInfo());
+                        }
+                        else
+                        {
+                            Console.WriteLine("Vehicle with the specified registration number not found.");
+                        }
                         break;
                     case "0":
                         return;
@@ -31,7 +40,7 @@ namespace OvningGarage.UI.Menus
                         break;
                 }
                 Console.ReadKey();
-                Console.Clear(); 
+                Console.Clear();
             }
         }
     }

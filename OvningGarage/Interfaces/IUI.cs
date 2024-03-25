@@ -11,7 +11,7 @@ namespace OvningGarage.Interfaces
         void DisplayListAllVehiclesMenu(GarageHandler garageHandler);
         void DisplayCheckGarageEmptyMenu(GarageHandler garageHandler, int capacity);
 
-        void DisplayFindVehicleByRegNrMenu();
+        void DisplayFindVehicleByRegNrMenu(GarageHandler garageHandler);
         void DisplayInitialPreDecideGarageMenu();
 
       
