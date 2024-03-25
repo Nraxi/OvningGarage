@@ -12,10 +12,12 @@ namespace OvningGarage.Handlers
         private int airplaneCount;
         private int busCount;
         private int boatCount;
+        private int capacity;
 
 
         public GarageHandler(int capacity)
         {
+            this.capacity = capacity;
             garage = new Garage<Vehicle>(capacity);
             carCount = 0;
             motorcycleCount = 0;
@@ -130,11 +132,14 @@ namespace OvningGarage.Handlers
             }
         }
 
-        public bool CheckGarageEmpty()
+        public static bool CheckGarageEmpty(Garage<Vehicle> garage)
         {
             return garage.Count() == 0;
         }
-
+        public Garage<Vehicle> GetGarage()
+        {
+            return garage;
+        }
         public void CheckGarage()
         {
             if (garage.Count() == 0)

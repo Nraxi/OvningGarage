@@ -5,9 +5,9 @@ namespace OvningGarage.UI.Menus
 {
     public class HandleAddVehicleMenu
     {
-        public static void VehicleMenu()
+        public static void VehicleMenu(GarageHandler garageHandler, int capacity)
         {
-            GarageHandler garageHandler = new GarageHandler(10);
+           
 
             string input;
             while (true)
@@ -28,24 +28,24 @@ namespace OvningGarage.UI.Menus
                 {
                     case "1":
                         Console.WriteLine("Adding a Car...");
-                        Car(garageHandler);
+                        Car(garageHandler, capacity);
                         break;
 
                     case "2":
                         Console.WriteLine("Adding Motorcycle...");
-                        Motorcycle(garageHandler);
+                        Motorcycle(garageHandler, capacity);
                         break;
                     case "3":
                         Console.WriteLine("Adding Airplane...");
-                        Airplane(garageHandler);
+                        Airplane(garageHandler, capacity);
                         break;
                     case "4":
                         Console.WriteLine("Adding Bus...");
-                        Bus(garageHandler);
+                        Bus(garageHandler, capacity);
                         break;
                     case "5":
                         Console.WriteLine("Adding Boat...");
-                        Boat(garageHandler);
+                        Boat(garageHandler, capacity);
                         break;
                     case "0":
                         return;
@@ -57,7 +57,7 @@ namespace OvningGarage.UI.Menus
                 Console.Clear();
             }
         }
-        private static void Car(GarageHandler garageHandler)
+        private static void Car(GarageHandler garageHandler, int capacity)
         {
             Console.WriteLine("Enter car brand:");
             var brand = Console.ReadLine();
@@ -87,7 +87,7 @@ namespace OvningGarage.UI.Menus
                 Console.WriteLine("One or more input values are null. Car cannot be added.");
                 return;
             }
-
+            capacity--;
             Console.WriteLine("Adding Car...");
             Console.WriteLine("Your car has been added. Please check that the current information is correct.");
             Console.WriteLine("If wrong please call the customer service");
@@ -95,7 +95,7 @@ namespace OvningGarage.UI.Menus
             Console.WriteLine(garageHandler.FindVehicleByRegNr(regNr).GetVehicleInfo());
         }
 
-        private static void Motorcycle(GarageHandler garageHandler)
+        private static void Motorcycle(GarageHandler garageHandler, int capacity)
         {
             Console.WriteLine("Enter Motorcycle brand:");
             var brand = Console.ReadLine();
@@ -137,7 +137,7 @@ namespace OvningGarage.UI.Menus
             Console.WriteLine("\nIf wrong please call the customer service");
         }
 
-        private static void Airplane(GarageHandler garageHandler)
+        private static void Airplane(GarageHandler garageHandler, int capacity)
         {
             Console.WriteLine("Enter Airplane brand:");
             var brand = Console.ReadLine();
@@ -182,7 +182,7 @@ namespace OvningGarage.UI.Menus
             Console.WriteLine(garageHandler.FindVehicleByRegNr(regNr).GetVehicleInfo());
         }
 
-        private static void Bus(GarageHandler garageHandler)
+        private static void Bus(GarageHandler garageHandler, int capacity)
         {
             Console.WriteLine("Enter Bus brand:");
             var brand = Console.ReadLine();
@@ -221,7 +221,7 @@ namespace OvningGarage.UI.Menus
 
             Console.WriteLine("\nIf wrong please call the customer service");
         }
-        private static void Boat(GarageHandler garageHandler)
+        private static void Boat(GarageHandler garageHandler, int capacity)
         {
             Console.WriteLine("Enter Boat brand:");
             var brand = Console.ReadLine();

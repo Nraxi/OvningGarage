@@ -1,6 +1,7 @@
 ﻿using OvningGarage.Handlers;
 using OvningGarage.Interfaces;
 using OvningGarage.Models;
+using OvningGarage.UI.Menus;
 using System;
 
 namespace OvningGarage.Initiate
@@ -18,10 +19,9 @@ namespace OvningGarage.Initiate
             {
                 Console.WriteLine("Skipping initialization. Redirecting to Startup...");
                 Console.ReadKey();
-                StartStartup();
+                StartStartup(10); // Ange ett godtyckligt värde för capacity här
                 return;
             }
-
 
             // Be användaren att ange antalet platser i garaget
             Console.WriteLine("Please enter the number of parking spots in the garage:");
@@ -51,10 +51,8 @@ namespace OvningGarage.Initiate
             garageHandler.AddMotorcycleToGarage("Honda", "XYZ789", "Petrol", 1, capacity); // Parkeringsticketnummer tilldelas automatiskt
             garageHandler.AddAirplaneToGarage("Boeing", "DEF456", 4, 5000, "Jet", capacity); // Parkeringsticketnummer tilldelas automatiskt
 
-
             // Visa alla fordon i garaget
             garageHandler.ListAllVehicles();
-          
 
             // Räkna antalet lediga platser i garaget
             int availableSpots = capacity - garageHandler.TotalVehiclesCount();
@@ -64,7 +62,7 @@ namespace OvningGarage.Initiate
             Console.ReadLine();
 
             // Kontrollera om det finns några fordon kvar i garaget
-            while (!garageHandler.CheckGarageEmpty())
+            while (!GarageHandler.CheckGarageEmpty(garageHandler.GetGarage()))
             {
                 Console.WriteLine("There are still vehicles in the garage. Please remove them before proceeding.");
                 Console.WriteLine("Enter the  parking ticket number that you want to delete:");
@@ -93,7 +91,7 @@ namespace OvningGarage.Initiate
                 Console.ReadLine();
                 Console.WriteLine("Redirecting to Startup...");
                 Console.ReadKey();
-                StartStartup();
+                StartStartup(capacity);
             }
             else
             {
@@ -103,12 +101,11 @@ namespace OvningGarage.Initiate
         }
 
         // Starta Startup
-        private static void StartStartup()
+        private static void StartStartup(int capacity)
         {
             IUI ui = new ConsoleUI();
-            var startup = new Startup(ui);
+            var startup = new Startup(ui, capacity);
             startup.Run();
         }
     }
 }
-

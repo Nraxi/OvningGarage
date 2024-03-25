@@ -1,19 +1,17 @@
-﻿using OvningGarage.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OvningGarage.Handlers;
+using OvningGarage.Interfaces;
 
 namespace OvningGarage.Initiate
 {
     public class Startup
     {
         private readonly IUI ui;
+        private int capacity;
 
-        public Startup(IUI ui)
+        public Startup(IUI ui, int capacity)
         {
             this.ui = ui;
+            this.capacity = capacity;
         }
 
         public void Run()
@@ -27,24 +25,24 @@ namespace OvningGarage.Initiate
                 switch (choice)
                 {
                     case "1":
-                        ui.DisplayAddVehicleMenu();
-                        // Implement logic for adding vehicles
+                        ui.DisplayAddVehicleMenu(new GarageHandler(capacity), capacity);
+                        // Implementera logiken för att lägga till fordon
                         break;
                     case "2":
                         ui.DisplayRemoveVehicleMenu();
-                        // Implement logic for removing vehicles
+                        // Implementera logiken för att ta bort fordon
                         break;
                     case "3":
                         ui.DisplayListAllVehiclesMenu();
-                        // Implement logic for listing all vehicles
+                        // Implementera logiken för att lista alla fordon
                         break;
                     case "4":
-                        ui.DisplayCheckGarageEmptyMenu();
-                        // Implement logic for checking if garage is empty
+                        ui.DisplayCheckGarageEmptyMenu(new GarageHandler(capacity), capacity);
+                        // Implementera logiken för att kontrollera om garaget är tomt
                         break;
                     case "5":
                         ui.DisplayFindVehicleByRegNrMenu();
-                        // Implement logic for finding vehicle by registration number
+                        // Implementera logiken för att hitta fordon efter registreringsnummer
                         break;
                     case "6":
                         ui.DisplayInitialPreDecideGarageMenu();
@@ -53,7 +51,7 @@ namespace OvningGarage.Initiate
                         exit = true;
                         break;
                     default:
-                        Console.WriteLine("Invalid choice. Please try again.");
+                        Console.WriteLine("Ogiltigt val. Försök igen.");
                         break;
                 }
             } while (!exit);

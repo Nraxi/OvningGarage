@@ -1,12 +1,14 @@
-﻿using System;
+﻿using OvningGarage.Handlers;
+using System;
 
 namespace OvningGarage.UI.Menus
 {
     public class HandleCheckGarageEmptyMenu
     {
-        public static void VehicleMenu()
+        public static void VehicleMenu(GarageHandler garageHandler, int capacity)
         {
             string input;
+
             while (true)
             {
                 Console.Clear();
@@ -19,9 +21,19 @@ namespace OvningGarage.UI.Menus
                 switch (input)
                 {
                     case "1":
-                        Console.WriteLine("LIST OR NOT");
+                        if (GarageHandler.CheckGarageEmpty(garageHandler.GetGarage()))
+                        {
+                            Console.WriteLine("The garage is empty.");
+                            Console.WriteLine($"Garage capacity: {capacity}");
+                        }
+                        else
+                        {
+                            Console.WriteLine("The garage is not empty.");
+                            Console.WriteLine($"Garage capacity: {capacity}");
+                        }
+                        Console.WriteLine("Press Enter to continue...");
                         Console.ReadLine();
-                        Console.WriteLine("GET LIST...");
+
                         break;
                     case "0":
                         return;
@@ -29,8 +41,6 @@ namespace OvningGarage.UI.Menus
                         Console.WriteLine("Invalid choice. Please enter a valid number.");
                         break;
                 }
-                Console.ReadKey();
-                Console.Clear(); 
             }
         }
     }
