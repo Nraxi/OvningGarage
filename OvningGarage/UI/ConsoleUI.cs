@@ -12,9 +12,9 @@ public class ConsoleUI : IUI
         Console.WriteLine("1. Add Vehicle");
         Console.WriteLine("2. Remove Vehicle");
         Console.WriteLine("3. List All Vehicles / List Vehicles types and numbers");
-        Console.WriteLine("4. Check Garage Empty");
+        Console.WriteLine("4. Check Garage Status");
         Console.WriteLine("5. Find Vehicle By Registration Number");
-        Console.WriteLine("6. Initialize Garage with Initial Vehicles");
+        Console.WriteLine("6. Searchbar");
         Console.WriteLine("0. Exit");
     }
 
@@ -46,9 +46,9 @@ public class ConsoleUI : IUI
         HandleFindVehicleByRegNrMenu.VehicleMenu(garageHandler);
     }
 
-    public void DisplayInitialPreDecideGarageMenu()
+    public void DisplayHandleSearchAttribute(GarageHandler garageHandler)
     {
-        HandleInitialPreDecideGarageMenu.VehicleMenu();
+        HandleSearchAttribute.VehicleMenu(garageHandler);
     }
 
 

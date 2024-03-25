@@ -12,9 +12,9 @@ namespace OvningGarage.UI.Menus
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Check Garage Empty Menu:");
-                Console.WriteLine("1. Press 1 to make a check");
-                Console.WriteLine("2. Make a check of total spots");
+                Console.WriteLine("Check Garage Status Menu:");
+                Console.WriteLine("1. Check Status of Garage & Avalible spots");
+                Console.WriteLine("2. Check the total Capacity");
                 Console.WriteLine("0. Back to Main Menu");
 
                 input = Console.ReadLine()!;

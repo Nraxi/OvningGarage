@@ -99,7 +99,7 @@ namespace OvningGarage.Handlers
             if (!vehicleRemoved)
             {
                 Console.WriteLine("Vehicle with the specified parking ticket number not found");
-                //throw new ArgumentException("Vehicle with the specified parking ticket number not found.");
+                
             }
         }
 
@@ -148,7 +148,61 @@ namespace OvningGarage.Handlers
                 }
             }
         }
-     
+        public void SearchVehiclesByWord(string searchTerm)
+        {
+            List<Vehicle> matchedVehicles = new List<Vehicle>();
+
+            foreach (var vehicle in garage)
+            {
+                if (vehicle.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                    vehicle.RegNr.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+                {
+                    matchedVehicles.Add(vehicle);
+                }
+            }
+
+            if (matchedVehicles.Count == 0)
+            {
+                Console.WriteLine($"No vehicles found matching the search term '{searchTerm}'.");
+            }
+            else
+            {
+                Console.WriteLine($"Found {matchedVehicles.Count} vehicles matching the search term '{searchTerm}':");
+                foreach (var vehicle in matchedVehicles)
+                {
+                    string vehicleType = GetVehicleType(vehicle);
+                    Console.WriteLine($"Type: {vehicleType}, Name: {vehicle.Name}, Registration Number: {vehicle.RegNr}, ticketNR: {vehicle.ParkingTicketNr}");
+                }
+            }
+        }
+        private string GetVehicleType(Vehicle vehicle)
+        {
+            if (vehicle is Car)
+            {
+                return "Car";
+            }
+            else if (vehicle is Motorcycle)
+            {
+                return "Motorcycle";
+            }
+            else if (vehicle is Airplane)
+            {
+                return "Airplane";
+            }
+            else if (vehicle is Bus)
+            {
+                return "Bus";
+            }
+            else if (vehicle is Boat)
+            {
+                return "Boat";
+            }
+            else
+            {
+                return "Unknown";
+            }
+        }
+       
         public int GetCapacity => garage.Capacity;
 
         public bool CheckGarageEmpty()

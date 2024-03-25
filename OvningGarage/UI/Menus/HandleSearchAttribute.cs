@@ -5,15 +5,15 @@ using OvningGarage.Interfaces;
 
 namespace OvningGarage.UI.Menus
 {
-    public class HandleInitialPreDecideGarageMenu
+    public class HandleSearchAttribute
     {
-        public static void VehicleMenu()
+        public static void VehicleMenu(GarageHandler garageHandler)
         {
             string input;
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Do you want to pre-decide the garage contents?");
+                Console.WriteLine("Search on attribute");
                 Console.WriteLine("1. Yes");
                 Console.WriteLine("0. Back to Main Menu");
 
@@ -22,10 +22,9 @@ namespace OvningGarage.UI.Menus
                 switch (input)
                 {
                     case "1":
-                      
-
-
-                        Console.WriteLine("Garage initialized with pre-decided contents.");
+                        Console.WriteLine("Enter the search term:");
+                        string searchTerm = Console.ReadLine()!;
+                        garageHandler.SearchVehiclesByWord(searchTerm);
                         break;
                     case "0":
                         return;
