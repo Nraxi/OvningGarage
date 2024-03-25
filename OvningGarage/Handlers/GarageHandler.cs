@@ -33,7 +33,10 @@ namespace OvningGarage.Handlers
         }
 
 
-
+        public Vehicle? FindVehicleByParkingTicket(int parkingTicketNr)
+        {
+            return garage.FirstOrDefault(vehicle => vehicle.ParkingTicketNr == parkingTicketNr);
+        }
 
         public void AddCarToGarage(string name, string regNr, string fuelType, int cylinderVolume, int parkingTicketNr)
         {
@@ -48,7 +51,7 @@ namespace OvningGarage.Handlers
             Motorcycle motorcycle = new Motorcycle(name, regNr, fuelType, numberOfSeats,parkingTicketNr);
             garage.AddVehicle(motorcycle);
             motorcycleCount++;
-            capacity--;
+            
         }
 
         public void AddAirplaneToGarage(string name, string regNr, int numberOfEngines, int cylinderVolume, string fuelType, int parkingTicketNr)
@@ -56,7 +59,7 @@ namespace OvningGarage.Handlers
             Airplane airplane = new Airplane(name, regNr, numberOfEngines, cylinderVolume, fuelType, parkingTicketNr);
             garage.AddVehicle(airplane);
             airplaneCount++;
-            capacity--;
+            
         }
 
         public void AddBusToGarage(string name, string regNr, double length, string fuelType, int parkingTicketNr)
@@ -64,7 +67,7 @@ namespace OvningGarage.Handlers
             Bus bus = new Bus(name, regNr, length, fuelType, parkingTicketNr);
             garage.AddVehicle(bus);
             busCount++;
-            capacity--;
+            
         }
 
         public void AddBoatToGarage(string name, string regNr, int numberOfEngines, int numberOfSeats, double length, int parkingTicketNr)
@@ -72,7 +75,7 @@ namespace OvningGarage.Handlers
             Boat boat = new Boat(name, regNr, numberOfEngines, numberOfSeats, length, parkingTicketNr);
             garage.AddVehicle(boat);
             boatCount++;
-            capacity--;
+            
         }
 
 

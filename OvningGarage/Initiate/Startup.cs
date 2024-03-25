@@ -30,7 +30,7 @@ namespace OvningGarage.Initiate
                         // Implementera logiken för att lägga till fordon
                         break;
                     case "2":
-                        ui.DisplayRemoveVehicleMenu();
+                        ui.DisplayRemoveVehicleMenu(garageHandler);
                         // Implementera logiken för att ta bort fordon
                         break;
                     case "3":

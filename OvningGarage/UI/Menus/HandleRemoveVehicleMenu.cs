@@ -5,7 +5,7 @@ namespace OvningGarage.UI.Menus
 {
     public class HandleRemoveVehicleMenu
     {
-        public static void VehicleMenu( )
+        public static void VehicleMenu(GarageHandler garageHandler)
         {
             string input;
             while (true)
@@ -21,17 +21,36 @@ namespace OvningGarage.UI.Menus
                 {
                     case "1":
                         Console.WriteLine("Enter your parking ticket number:");
-                        Console.ReadLine();
-                        Console.WriteLine("Removeing Car...");
+                        if (!int.TryParse(Console.ReadLine(), out int parkingTicketNr))
+                        {
+                            Console.WriteLine("Invalid input. Please enter a valid parking ticket number.");
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
+                            break;
+                        }
+
+                        if (garageHandler.FindVehicleByParkingTicket(parkingTicketNr) == null)
+                        {
+                            Console.WriteLine("Vehicle with the specified parking ticket number not found.");
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
+                            break;
+                        }
+
+                        garageHandler.RemoveVehicle(parkingTicketNr);
+                        Console.WriteLine("Removing Vehicle...");
+                        Console.WriteLine("Press any key to continue...");
+                        Console.ReadKey();
                         break;
                     case "0":
                         return;
                     default:
                         Console.WriteLine("Invalid choice. Please enter a valid number.");
+                        Console.WriteLine("Press any key to continue...");
+                        Console.ReadKey();
                         break;
                 }
-                Console.ReadKey();
-                Console.Clear(); 
+                Console.Clear();
             }
         }
     }

@@ -23,9 +23,9 @@ public class ConsoleUI : IUI
         HandleAddVehicleMenu.VehicleMenu(garageHandler);
     }
 
-    public void DisplayRemoveVehicleMenu()
+    public void DisplayRemoveVehicleMenu(GarageHandler garageHandler)
     {
-        HandleRemoveVehicleMenu.VehicleMenu();
+        HandleRemoveVehicleMenu.VehicleMenu(garageHandler);
     }
 
     public void DisplayListAllVehiclesMenu(GarageHandler garageHandler)
