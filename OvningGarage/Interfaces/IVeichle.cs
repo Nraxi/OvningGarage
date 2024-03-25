@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OvningGarage.Interfaces
 {
-    public interface IVeichle
+    public interface IVehicle
     {
         string Name { get; set; }
         string RegNr { get; set; }
