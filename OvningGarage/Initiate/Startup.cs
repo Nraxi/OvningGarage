@@ -17,6 +17,7 @@ namespace OvningGarage.Initiate
         public void Run()
         {
             bool exit = false;
+            GarageHandler garageHandler = new GarageHandler(capacity);
             do
             {
                 ui.DisplayMainMenu();
@@ -25,7 +26,7 @@ namespace OvningGarage.Initiate
                 switch (choice)
                 {
                     case "1":
-                        ui.DisplayAddVehicleMenu(new GarageHandler(capacity), capacity);
+                        ui.DisplayAddVehicleMenu(garageHandler, capacity);
                         // Implementera logiken för att lägga till fordon
                         break;
                     case "2":
@@ -33,11 +34,11 @@ namespace OvningGarage.Initiate
                         // Implementera logiken för att ta bort fordon
                         break;
                     case "3":
-                        ui.DisplayListAllVehiclesMenu();
+                        ui.DisplayListAllVehiclesMenu(garageHandler);
                         // Implementera logiken för att lista alla fordon
                         break;
                     case "4":
-                        ui.DisplayCheckGarageEmptyMenu(new GarageHandler(capacity), capacity);
+                        ui.DisplayCheckGarageEmptyMenu(garageHandler, capacity);
                         // Implementera logiken för att kontrollera om garaget är tomt
                         break;
                     case "5":

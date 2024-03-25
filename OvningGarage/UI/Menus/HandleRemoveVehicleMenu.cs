@@ -1,10 +1,11 @@
-﻿using System;
+﻿using OvningGarage.Handlers;
+using System;
 
 namespace OvningGarage.UI.Menus
 {
     public class HandleRemoveVehicleMenu
     {
-        public static void VehicleMenu()
+        public static void VehicleMenu( )
         {
             string input;
             while (true)

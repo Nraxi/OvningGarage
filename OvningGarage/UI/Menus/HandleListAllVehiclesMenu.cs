@@ -1,10 +1,11 @@
-﻿using System;
+﻿using OvningGarage.Handlers;
+using System;
 
 namespace OvningGarage.UI.Menus
 {
     public class HandleListAllVehiclesMenu
     {
-        public static void VehicleMenu()
+        public static void VehicleMenu(GarageHandler garageHandler)
         {
             string input;
             while (true)
@@ -20,7 +21,7 @@ namespace OvningGarage.UI.Menus
                 {
                     case "1":
                         Console.WriteLine("List of List");
-                        
+                        garageHandler.ListAllVehicles();
                         break;
                     case "0":
                         return;
