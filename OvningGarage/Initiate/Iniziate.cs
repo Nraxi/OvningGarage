@@ -67,7 +67,14 @@ namespace OvningGarage.Initiate
             // Visa menyn för att lägga till fordon
             HandleAddVehicleMenu.VehicleMenu(garageHandler, capacity);
 
-            StartStartup(capacity);
+            // Skapa en instans av ConsoleUI
+            IUI ui = new ConsoleUI();
+
+            // Skapa en instans av Startup med kapaciteten och samma garageHandler
+            var startup = new CustomStartUp(ui, capacity, garageHandler);
+
+            // Kör startup
+            startup.Run();
         }
 
 
@@ -167,9 +174,22 @@ namespace OvningGarage.Initiate
         // Starta Startup
         private static void StartStartup(int capacity)
         {
+            // Skapa en instans av GarageHandler med angivet kapacitet
+            var garageHandler = new GarageHandler(capacity);
+
+            // Visa menyn för att lägga till fordon
+            //HandleAddVehicleMenu.VehicleMenu(garageHandler, capacity);
+
+            // Skapa en instans av ConsoleUI
             IUI ui = new ConsoleUI();
-            var startup = new Startup(ui, capacity);
+
+            // Skapa en instans av CustomStartUp med kapaciteten och samma garageHandler
+            var startup = new CustomStartUp(ui, capacity, garageHandler);
+
+            // Kör startup
             startup.Run();
         }
+
+       
     }
 }
