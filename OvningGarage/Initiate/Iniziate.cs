@@ -45,7 +45,7 @@ namespace OvningGarage.Initiate
 
             // Räkna antalet lediga platser i garaget
             int availableSpots = capacity - garageHandler.TotalVehiclesCount();
-            Console.WriteLine($"The total Capacity of the Garage is now: {availableSpots}");
+            Console.WriteLine($"There are now {availableSpots} available spots in the Garage. ");
             // Vänta på användarens bekräftelse för att fortsätta
             Console.WriteLine("Press Enter to proceed...");
             Console.ReadLine();
@@ -54,7 +54,7 @@ namespace OvningGarage.Initiate
             while (!garageHandler.CheckGarageEmpty())
             {
                 Console.WriteLine("There are vehicles in the garage. Please remove them before proceeding.");
-                Console.WriteLine("Enter the number that you want to delete:");
+                Console.WriteLine("Enter the  parking ticket number that you want to delete:");
                 var input = Console.ReadLine();
                 int parkingTicketNr;
                 if (int.TryParse(input, out parkingTicketNr))
@@ -98,3 +98,4 @@ namespace OvningGarage.Initiate
         }
     }
 }
+
