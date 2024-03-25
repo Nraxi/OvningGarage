@@ -1,12 +1,10 @@
-﻿using Microsoft.VisualBasic.FileIO;
-using OvningGarage.Handlers;
-using OvningGarage.Models;
+﻿using OvningGarage.Handlers;
 
 namespace OvningGarage.UI.Menus
 {
     public class HandleAddVehicleMenu
     {
-        public static void VehicleMenu(GarageHandler garageHandler)
+        public static void VehicleMenu(GarageHandler garageHandler, int capacity)
         {
 
 
@@ -90,7 +88,7 @@ namespace OvningGarage.UI.Menus
                     garageHandler.AddCarToGarage(brand, regNr, fuelType, cylinderVolume, parkingTicketNr);
                     Console.WriteLine("Your car has been added. Please check that the current information is correct.");
                     Console.WriteLine("If wrong please call the customer service");
-                    Console.WriteLine(garageHandler.FindVehicleByRegNr(regNr).GetVehicleInfo());
+                    Console.WriteLine(garageHandler.FindVehicleByRegNr(regNr)?.GetVehicleInfo() ?? "Vehicle not found.");
                 }
             }
             else
@@ -134,7 +132,7 @@ namespace OvningGarage.UI.Menus
                     Console.WriteLine("\n press enter");
                     Console.ReadKey();
                     Console.WriteLine("Your Motorcycle has been added. ");
-                    Console.WriteLine(garageHandler.FindVehicleByRegNr(regNr).GetVehicleInfo());
+                    Console.WriteLine(garageHandler.FindVehicleByRegNr(regNr)?.GetVehicleInfo() ?? "Vehicle not found.");
 
                     Console.WriteLine("If something is wrong please call the customer service");
                 }
@@ -145,9 +143,6 @@ namespace OvningGarage.UI.Menus
                 return;
             }
         }
-
-
-
 
 
 
@@ -194,7 +189,7 @@ namespace OvningGarage.UI.Menus
                     Console.WriteLine("\n press enter");
                     Console.ReadKey();
                     Console.WriteLine("Your Airplane has been added. ");
-                    Console.WriteLine(garageHandler.FindVehicleByRegNr(regNr).GetVehicleInfo());
+                    Console.WriteLine(garageHandler.FindVehicleByRegNr(regNr)?.GetVehicleInfo() ?? "Vehicle not found.");
 
                     Console.WriteLine("If something is wrong please call the customer service");
                 }
@@ -241,7 +236,8 @@ namespace OvningGarage.UI.Menus
                     Console.WriteLine("\n press enter");
                     Console.ReadKey();
                     Console.WriteLine("Your Bus has been added. ");
-                    Console.WriteLine(garageHandler.FindVehicleByRegNr(regNr).GetVehicleInfo());
+                    Console.WriteLine(garageHandler.FindVehicleByRegNr(regNr)?.GetVehicleInfo() ?? "Vehicle not found.");
+
 
                     Console.WriteLine("If something is wrong please call the customer service");
                 }
@@ -301,7 +297,8 @@ namespace OvningGarage.UI.Menus
                     Console.WriteLine("\n press enter");
                     Console.ReadKey();
                     Console.WriteLine("Your Boat has been added. ");
-                    Console.WriteLine(garageHandler.FindVehicleByRegNr(regNr).GetVehicleInfo());
+                    Console.WriteLine(garageHandler.FindVehicleByRegNr(regNr)?.GetVehicleInfo() ?? "Vehicle not found.");
+
 
                     Console.WriteLine("If something is wrong please call the customer service");
                 }

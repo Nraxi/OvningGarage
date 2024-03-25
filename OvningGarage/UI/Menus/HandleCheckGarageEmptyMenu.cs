@@ -13,7 +13,8 @@ namespace OvningGarage.UI.Menus
             {
                 Console.Clear();
                 Console.WriteLine("Check Garage Empty Menu:");
-                Console.WriteLine("1. Press 1, to make a check");
+                Console.WriteLine("1. Press 1 to make a check");
+                Console.WriteLine("2. Make a check of total spots");
                 Console.WriteLine("0. Back to Main Menu");
 
                 input = Console.ReadLine()!;
@@ -33,6 +34,11 @@ namespace OvningGarage.UI.Menus
                         }
                         Console.WriteLine("Press Enter to continue...");
                         Console.ReadLine();
+                        break;
+
+                    case "2":
+                        Console.WriteLine($"Total number of spots in the garage: {garageHandler.GetCapacity}");
+                        Console.ReadKey();
                         break;
                     case "0":
                         return;

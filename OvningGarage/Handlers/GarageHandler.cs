@@ -148,7 +148,7 @@ namespace OvningGarage.Handlers
                 }
             }
         }
-
+     
         public int GetCapacity => garage.Capacity;
 
         public bool CheckGarageEmpty()

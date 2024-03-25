@@ -7,10 +7,8 @@ namespace OvningGarage
     {
         static void Main(string[] args)
         {
-            //IUI ui = new ConsoleUI();
-            //var startup = new Startup(ui);
-            //startup.Run();
-            Iniziate.InitializeGarage();
+          
+            Iniziate.DisplayMainMenu();
         }
     }
 }

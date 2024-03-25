@@ -8,6 +8,70 @@ namespace OvningGarage.Initiate
 {
     internal class Iniziate
     {
+        public static void DisplayMainMenu()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Main Menu:");
+                Console.WriteLine("1. Initialize Garage with Default Capacity");
+                Console.WriteLine("2. Initialize Garage with Custom Capacity");
+                Console.WriteLine("3. Initialize Garage with checking all parameters and set a custom Capacity");
+                Console.WriteLine("0. Exit");
+
+                string input = Console.ReadLine()!.Trim();
+
+                switch (input)
+                {
+                    case "1":
+                        InitializeWithDefaultCapacity();
+                        break;
+                    case "2":
+                        InitializeWithCustomCapacity();
+                        break;
+                    case "3":
+                        InitializeGarage();
+                        break;
+                    case "0":
+                        return;
+                    default:
+                        Console.WriteLine("Invalid choice. Please enter a valid number.");
+                        break;
+                }
+            }
+        }
+
+        public static void InitializeWithDefaultCapacity()
+        {
+            StartStartup(10);
+        }
+
+        private static void InitializeWithCustomCapacity()
+        {
+            Console.WriteLine("Please enter the number of parking spots in the garage:");
+            int capacity;
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out capacity))
+                {
+                    Console.WriteLine("Invalid input. Please enter a valid integer.");
+                    continue;
+                }
+
+                break;
+            }
+
+            // Skapa en instans av GarageHandler med angivet kapacitet
+            var garageHandler = new GarageHandler(capacity);
+
+            // Visa menyn för att lägga till fordon
+            HandleAddVehicleMenu.VehicleMenu(garageHandler, capacity);
+
+            StartStartup(capacity);
+        }
+
+
+    
         public static void InitializeGarage()
         {
             Console.WriteLine("Welcome to the Garage Initialization!");

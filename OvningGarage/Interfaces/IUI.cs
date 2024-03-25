@@ -6,10 +6,10 @@ namespace OvningGarage.Interfaces
     public interface IUI
     {
         void DisplayMainMenu();
-        void DisplayAddVehicleMenu(GarageHandler garageHandler);
+        void DisplayAddVehicleMenu(GarageHandler garageHandler, int capacity);
         void DisplayRemoveVehicleMenu(GarageHandler garageHandler);
         void DisplayListAllVehiclesMenu(GarageHandler garageHandler);
-        void DisplayCheckGarageEmptyMenu(GarageHandler garageHandler, int capacity);
+        void DisplayCheckGarageEmptyMenu(GarageHandler garageHandler);
 
         void DisplayFindVehicleByRegNrMenu(GarageHandler garageHandler);
         void DisplayInitialPreDecideGarageMenu();
