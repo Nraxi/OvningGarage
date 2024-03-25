@@ -35,9 +35,10 @@ namespace OvningGarage.Initiate
             var garageHandler = new GarageHandler(capacity);
 
             // Lägg till några fordon i garaget för att testa
-            garageHandler.AddCarToGarage("Volvo", "ABC123", 1, "gasoline", 2000);
-            garageHandler.AddMotorcycleToGarage("Honda", "XYZ789", 2, "Petrol", 1);
-            garageHandler.AddAirplaneToGarage("Boeing", "DEF456", 3, 4, 5000, "Jet");
+            garageHandler.AddCarToGarage("Volvo", "ABC123", "gasoline", 2000, capacity); // Parkeringsticketnummer tilldelas automatiskt
+            garageHandler.AddMotorcycleToGarage("Honda", "XYZ789", "Petrol", 1, capacity); // Parkeringsticketnummer tilldelas automatiskt
+            garageHandler.AddAirplaneToGarage("Boeing", "DEF456", 4, 5000, "Jet", capacity); // Parkeringsticketnummer tilldelas automatiskt
+
 
             // Visa alla fordon i garaget
             garageHandler.ListAllVehicles();
@@ -53,7 +54,7 @@ namespace OvningGarage.Initiate
             // Kontrollera om det finns några fordon kvar i garaget
             while (!garageHandler.CheckGarageEmpty())
             {
-                Console.WriteLine("There are vehicles in the garage. Please remove them before proceeding.");
+                Console.WriteLine("There are still vehicles in the garage. Please remove them before proceeding.");
                 Console.WriteLine("Enter the  parking ticket number that you want to delete:");
                 var input = Console.ReadLine();
                 int parkingTicketNr;

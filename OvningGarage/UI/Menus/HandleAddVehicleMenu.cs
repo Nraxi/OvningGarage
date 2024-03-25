@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OvningGarage.Handlers;
+using System;
 
 namespace OvningGarage.UI.Menus
 {
@@ -24,6 +25,13 @@ namespace OvningGarage.UI.Menus
                 switch (input)
                 {
                     case "1":
+                        
+                        //var märke = Console.ReadLine();
+                        //var RegNr = Console.ReadLine();
+                        //int ParkingTicketNr = Console.ReadLine();
+                        //var FuelType = Console.ReadLine();
+                        //int CylinderVolume = Console.ReadLine();
+                        //GarageHandler.AddCarToGarage(märke, RegNr, ParkingTicketNr, FuelType, CylinderVolume);
                         Console.WriteLine("Adding Car...");
                         break;
                     case "2":

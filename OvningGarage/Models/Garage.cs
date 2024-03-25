@@ -17,11 +17,14 @@ namespace OvningGarage.Models
             count = 0;
         }
 
-        public void AddVehicle(int parkingTicketNr, T vehicle)
+        public void AddVehicle(T vehicle)
         {
+           
             if (count < capacity)
             {
-                vehicles[parkingTicketNr] = vehicle;
+                int parkingTicketNr = count + 1;
+                vehicle.ParkingTicketNr = parkingTicketNr;
+                vehicles[count] = vehicle;
                 count++;
             }
             else
