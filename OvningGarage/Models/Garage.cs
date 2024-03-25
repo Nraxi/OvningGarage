@@ -9,6 +9,8 @@ namespace OvningGarage.Models
         private T[] vehicles;
         private int count;
         private int capacity;
+        public int Count { get { return count; } }
+        public int Capacity { get { return capacity; } }
 
         public Garage(int capacity)
         {

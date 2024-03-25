@@ -62,7 +62,7 @@ namespace OvningGarage.Initiate
             Console.ReadLine();
 
             // Kontrollera om det finns några fordon kvar i garaget
-            while (!GarageHandler.CheckGarageEmpty(garageHandler.GetGarage()))
+            while (!garageHandler.CheckGarageEmpty())
             {
                 Console.WriteLine("There are still vehicles in the garage. Please remove them before proceeding.");
                 Console.WriteLine("Enter the  parking ticket number that you want to delete:");

@@ -18,9 +18,9 @@ public class ConsoleUI : IUI
         Console.WriteLine("0. Exit");
     }
 
-    public void DisplayAddVehicleMenu(GarageHandler garageHandler, int capacity)
+    public void DisplayAddVehicleMenu(GarageHandler garageHandler)
     {
-        HandleAddVehicleMenu.VehicleMenu(garageHandler, capacity);
+        HandleAddVehicleMenu.VehicleMenu(garageHandler);
     }
 
     public void DisplayRemoveVehicleMenu()
@@ -37,7 +37,7 @@ public class ConsoleUI : IUI
     public void DisplayCheckGarageEmptyMenu(GarageHandler garageHandler, int capacity)
     {
 
-        HandleCheckGarageEmptyMenu.VehicleMenu(garageHandler, capacity);
+        HandleCheckGarageEmptyMenu.VehicleMenu(garageHandler);
 
     }
 

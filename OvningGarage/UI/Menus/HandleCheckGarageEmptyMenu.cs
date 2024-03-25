@@ -5,7 +5,7 @@ namespace OvningGarage.UI.Menus
 {
     public class HandleCheckGarageEmptyMenu
     {
-        public static void VehicleMenu(GarageHandler garageHandler, int capacity)
+        public static void VehicleMenu(GarageHandler garageHandler)
         {
             string input;
 
@@ -21,19 +21,18 @@ namespace OvningGarage.UI.Menus
                 switch (input)
                 {
                     case "1":
-                        if (GarageHandler.CheckGarageEmpty(garageHandler.GetGarage()))
+                        if (garageHandler.CheckGarageEmpty())
                         {
-                            Console.WriteLine("The garage is empty.");
-                            Console.WriteLine($"Garage capacity: {capacity}");
+                            Console.WriteLine("The garage is now empty.");
                         }
                         else
                         {
-                            Console.WriteLine("The garage is not empty.");
-                            Console.WriteLine($"Garage capacity: {capacity}");
+                            int currentCapacity = garageHandler.GetCapacity;
+                            int availableSpots = currentCapacity - garageHandler.TotalVehiclesCount();
+                            Console.WriteLine($"The garage is not empty. Available spots: {availableSpots}");
                         }
                         Console.WriteLine("Press Enter to continue...");
                         Console.ReadLine();
-
                         break;
                     case "0":
                         return;

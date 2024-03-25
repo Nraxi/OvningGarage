@@ -26,7 +26,7 @@ namespace OvningGarage.Initiate
                 switch (choice)
                 {
                     case "1":
-                        ui.DisplayAddVehicleMenu(garageHandler, capacity);
+                        ui.DisplayAddVehicleMenu(garageHandler);
                         // Implementera logiken för att lägga till fordon
                         break;
                     case "2":

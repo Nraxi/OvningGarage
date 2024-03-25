@@ -1,13 +1,14 @@
-﻿using OvningGarage.Handlers;
+﻿using Microsoft.VisualBasic.FileIO;
+using OvningGarage.Handlers;
 using OvningGarage.Models;
 
 namespace OvningGarage.UI.Menus
 {
     public class HandleAddVehicleMenu
     {
-        public static void VehicleMenu(GarageHandler garageHandler, int capacity)
+        public static void VehicleMenu(GarageHandler garageHandler)
         {
-           
+
 
             string input;
             while (true)
@@ -28,24 +29,24 @@ namespace OvningGarage.UI.Menus
                 {
                     case "1":
                         Console.WriteLine("Adding a Car...");
-                        Car(garageHandler, capacity);
+                        Car(garageHandler);
                         break;
 
                     case "2":
                         Console.WriteLine("Adding Motorcycle...");
-                        Motorcycle(garageHandler, capacity);
+                        Motorcycle(garageHandler);
                         break;
                     case "3":
                         Console.WriteLine("Adding Airplane...");
-                        Airplane(garageHandler, capacity);
+                        Airplane(garageHandler);
                         break;
                     case "4":
                         Console.WriteLine("Adding Bus...");
-                        Bus(garageHandler, capacity);
+                        Bus(garageHandler);
                         break;
                     case "5":
                         Console.WriteLine("Adding Boat...");
-                        Boat(garageHandler, capacity);
+                        Boat(garageHandler);
                         break;
                     case "0":
                         return;
@@ -57,7 +58,7 @@ namespace OvningGarage.UI.Menus
                 Console.Clear();
             }
         }
-        private static void Car(GarageHandler garageHandler, int capacity)
+        private static void Car(GarageHandler garageHandler)
         {
             Console.WriteLine("Enter car brand:");
             var brand = Console.ReadLine();
@@ -76,26 +77,30 @@ namespace OvningGarage.UI.Menus
             }
 
             int parkingTicketNr = garageHandler.TotalVehiclesCount() + 1;
-
+            int currentCapacity = garageHandler.GetCapacity;
             // Nullkontroller för att undvika varningar
             if (brand != null && regNr != null && fuelType != null)
             {
-                garageHandler.AddCarToGarage(brand, regNr, fuelType, cylinderVolume, parkingTicketNr);
+                if (garageHandler.TotalVehiclesCount() >= currentCapacity)
+                {
+                    Console.WriteLine("The Garage is full. Please consider parking elsewhere.");
+                }
+                else
+                {
+                    garageHandler.AddCarToGarage(brand, regNr, fuelType, cylinderVolume, parkingTicketNr);
+                    Console.WriteLine("Your car has been added. Please check that the current information is correct.");
+                    Console.WriteLine("If wrong please call the customer service");
+                    Console.WriteLine(garageHandler.FindVehicleByRegNr(regNr).GetVehicleInfo());
+                }
             }
             else
             {
                 Console.WriteLine("One or more input values are null. Car cannot be added.");
                 return;
             }
-            capacity--;
-            Console.WriteLine("Adding Car...");
-            Console.WriteLine("Your car has been added. Please check that the current information is correct.");
-            Console.WriteLine("If wrong please call the customer service");
-            // List information about the added car
-            Console.WriteLine(garageHandler.FindVehicleByRegNr(regNr).GetVehicleInfo());
         }
 
-        private static void Motorcycle(GarageHandler garageHandler, int capacity)
+        private static void Motorcycle(GarageHandler garageHandler)
         {
             Console.WriteLine("Enter Motorcycle brand:");
             var brand = Console.ReadLine();
@@ -114,30 +119,41 @@ namespace OvningGarage.UI.Menus
             }
 
             int parkingTicketNr = garageHandler.TotalVehiclesCount() + 1;
-
+            int currentCapacity = garageHandler.GetCapacity;
             // Nullkontroller för att undvika varningar
             if (brand != null && regNr != null && fuelType != null)
             {
-                garageHandler.AddMotorcycleToGarage(brand, regNr, fuelType, numberOfSeats, parkingTicketNr);
+                if (garageHandler.TotalVehiclesCount() >= currentCapacity)
+                {
+                    Console.WriteLine("The Garage is full. Please consider parking elsewhere.");
+                }
+                else
+                {
+                    garageHandler.AddMotorcycleToGarage(brand, regNr, fuelType, numberOfSeats, parkingTicketNr);
+                    Console.WriteLine("Adding Motorcycle...");
+                    Console.WriteLine("\n press enter");
+                    Console.ReadKey();
+                    Console.WriteLine("Your Motorcycle has been added. ");
+                    Console.WriteLine(garageHandler.FindVehicleByRegNr(regNr).GetVehicleInfo());
+
+                    Console.WriteLine("If something is wrong please call the customer service");
+                }
             }
             else
             {
-                Console.WriteLine("One or more input values are null. MC cannot be added.");
+                Console.WriteLine("One or more input values are null. Motorcycle cannot be added.");
                 return;
             }
-
-            Console.WriteLine("Adding Motorcycle...");
-            Console.WriteLine("\n press enter");
-            Console.ReadKey();
-            Console.WriteLine("Your Motorcycle has been added. Please check that the current information is correct.");
-
-            // List information about the added Motorcycle
-            Console.WriteLine(garageHandler.FindVehicleByRegNr(regNr).GetVehicleInfo());
-
-            Console.WriteLine("\nIf wrong please call the customer service");
         }
 
-        private static void Airplane(GarageHandler garageHandler, int capacity)
+
+
+
+
+
+
+
+        private static void Airplane(GarageHandler garageHandler)
         {
             Console.WriteLine("Enter Airplane brand:");
             var brand = Console.ReadLine();
@@ -151,8 +167,8 @@ namespace OvningGarage.UI.Menus
             {
                 Console.WriteLine("Invalid input. Please enter a valid integer for the engines:");
             }
-            
-           
+
+
             int cylinderVolume;
             Console.WriteLine("Enter Airplane cylinder volume:");
             while (!int.TryParse(Console.ReadLine(), out cylinderVolume))
@@ -163,26 +179,36 @@ namespace OvningGarage.UI.Menus
             Console.WriteLine("Enter Airplane fuel type:");
             var fuelType = Console.ReadLine();
             int parkingTicketNr = garageHandler.TotalVehiclesCount() + 1;
-
+            int currentCapacity = garageHandler.GetCapacity;
             // Nullkontroller för att undvika varningar
             if (brand != null && regNr != null && fuelType != null)
             {
-                garageHandler.AddAirplaneToGarage(brand, regNr, numberOfEngines, cylinderVolume, fuelType, parkingTicketNr);
+                if (garageHandler.TotalVehiclesCount() >= currentCapacity)
+                {
+                    Console.WriteLine("The Garage is full. Please consider parking elsewhere.");
+                }
+                else
+                {
+                    garageHandler.AddAirplaneToGarage(brand, regNr, numberOfEngines, cylinderVolume, fuelType, parkingTicketNr);
+                    Console.WriteLine("Adding Airplane...");
+                    Console.WriteLine("\n press enter");
+                    Console.ReadKey();
+                    Console.WriteLine("Your Airplane has been added. ");
+                    Console.WriteLine(garageHandler.FindVehicleByRegNr(regNr).GetVehicleInfo());
+
+                    Console.WriteLine("If something is wrong please call the customer service");
+                }
             }
             else
             {
                 Console.WriteLine("One or more input values are null. Airplane cannot be added.");
                 return;
             }
-
-            Console.WriteLine("Adding Airplane...");
-            Console.WriteLine("Your Airplane has been added. Please check that the current information is correct.");
-            Console.WriteLine("If wrong please call the customer service");
-            // List information about the added Airplane
-            Console.WriteLine(garageHandler.FindVehicleByRegNr(regNr).GetVehicleInfo());
         }
 
-        private static void Bus(GarageHandler garageHandler, int capacity)
+
+
+        private static void Bus(GarageHandler garageHandler)
         {
             Console.WriteLine("Enter Bus brand:");
             var brand = Console.ReadLine();
@@ -196,32 +222,38 @@ namespace OvningGarage.UI.Menus
             {
                 Console.WriteLine("Invalid input. Please enter a valid integer for length:");
             }
+
             Console.WriteLine("Enter Bus fuel type:");
             var fuelType = Console.ReadLine();
             int parkingTicketNr = garageHandler.TotalVehiclesCount() + 1;
-
+            int currentCapacity = garageHandler.GetCapacity;
             // Nullkontroller för att undvika varningar
             if (brand != null && regNr != null && fuelType != null)
             {
-                garageHandler.AddBusToGarage(brand, regNr, length, fuelType, parkingTicketNr);
+                if (garageHandler.TotalVehiclesCount() >= currentCapacity)
+                {
+                    Console.WriteLine("The Garage is full. Please consider parking elsewhere.");
+                }
+                else
+                {
+                    garageHandler.AddBusToGarage(brand, regNr, length, fuelType, parkingTicketNr);
+                    Console.WriteLine("Adding Bus...");
+                    Console.WriteLine("\n press enter");
+                    Console.ReadKey();
+                    Console.WriteLine("Your Bus has been added. ");
+                    Console.WriteLine(garageHandler.FindVehicleByRegNr(regNr).GetVehicleInfo());
+
+                    Console.WriteLine("If something is wrong please call the customer service");
+                }
             }
             else
             {
                 Console.WriteLine("One or more input values are null. Bus cannot be added.");
                 return;
             }
-
-            Console.WriteLine("Adding Bus...");
-            Console.WriteLine("\n press enter");
-            Console.ReadKey();
-            Console.WriteLine("Your Bus has been added. Please check that the current information is correct.");
-
-            // List information about the added Bus
-            Console.WriteLine(garageHandler.FindVehicleByRegNr(regNr).GetVehicleInfo());
-
-            Console.WriteLine("\nIf wrong please call the customer service");
         }
-        private static void Boat(GarageHandler garageHandler, int capacity)
+
+        private static void Boat(GarageHandler garageHandler)
         {
             Console.WriteLine("Enter Boat brand:");
             var brand = Console.ReadLine();
@@ -244,6 +276,7 @@ namespace OvningGarage.UI.Menus
                 Console.WriteLine("Invalid input. Please enter a valid integer for cylinder volume:");
             }
 
+
             double length;
             Console.WriteLine("Enter boat lengths");
             while (!double.TryParse(Console.ReadLine(), out length))
@@ -253,26 +286,31 @@ namespace OvningGarage.UI.Menus
 
             int parkingTicketNr = garageHandler.TotalVehiclesCount() + 1;
 
+            int currentCapacity = garageHandler.GetCapacity;
             // Nullkontroller för att undvika varningar
             if (brand != null && regNr != null)
             {
-                garageHandler.AddBoatToGarage(brand, regNr, numberOfEngines, numberOfSeats, length, parkingTicketNr);
+                if (garageHandler.TotalVehiclesCount() >= currentCapacity)
+                {
+                    Console.WriteLine("The Garage is full. Please consider parking elsewhere.");
+                }
+                else
+                {
+                    garageHandler.AddBoatToGarage(brand, regNr, numberOfEngines, numberOfSeats, length, parkingTicketNr);
+                    Console.WriteLine("Adding Boat...");
+                    Console.WriteLine("\n press enter");
+                    Console.ReadKey();
+                    Console.WriteLine("Your Boat has been added. ");
+                    Console.WriteLine(garageHandler.FindVehicleByRegNr(regNr).GetVehicleInfo());
+
+                    Console.WriteLine("If something is wrong please call the customer service");
+                }
             }
             else
             {
-                Console.WriteLine("One or more input values are null. MC cannot be added.");
+                Console.WriteLine("One or more input values are null. Boat cannot be added.");
                 return;
             }
-
-            Console.WriteLine("Adding Boat...");
-            Console.WriteLine("\n press enter");
-            Console.ReadKey();
-            Console.WriteLine("Your Boat has been added. Please check that the current information is correct.");
-
-            // List information about the added Boat
-            Console.WriteLine(garageHandler.FindVehicleByRegNr(regNr).GetVehicleInfo());
-
-            Console.WriteLine("\nIf wrong please call the customer service");
         }
     }
 }

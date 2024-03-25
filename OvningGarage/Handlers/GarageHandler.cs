@@ -1,4 +1,5 @@
 ﻿using OvningGarage.Models;
+using System.Dynamic;
 using System.Linq;
 
 namespace OvningGarage.Handlers
@@ -33,11 +34,13 @@ namespace OvningGarage.Handlers
 
 
 
+
         public void AddCarToGarage(string name, string regNr, string fuelType, int cylinderVolume, int parkingTicketNr)
         {
             Car car = new Car(name, regNr, fuelType, cylinderVolume, parkingTicketNr);
             garage.AddVehicle(car);
             carCount++;
+           
         }
 
         public void AddMotorcycleToGarage(string name, string regNr, string fuelType, int numberOfSeats, int parkingTicketNr)
@@ -45,6 +48,7 @@ namespace OvningGarage.Handlers
             Motorcycle motorcycle = new Motorcycle(name, regNr, fuelType, numberOfSeats,parkingTicketNr);
             garage.AddVehicle(motorcycle);
             motorcycleCount++;
+            capacity--;
         }
 
         public void AddAirplaneToGarage(string name, string regNr, int numberOfEngines, int cylinderVolume, string fuelType, int parkingTicketNr)
@@ -52,6 +56,7 @@ namespace OvningGarage.Handlers
             Airplane airplane = new Airplane(name, regNr, numberOfEngines, cylinderVolume, fuelType, parkingTicketNr);
             garage.AddVehicle(airplane);
             airplaneCount++;
+            capacity--;
         }
 
         public void AddBusToGarage(string name, string regNr, double length, string fuelType, int parkingTicketNr)
@@ -59,6 +64,7 @@ namespace OvningGarage.Handlers
             Bus bus = new Bus(name, regNr, length, fuelType, parkingTicketNr);
             garage.AddVehicle(bus);
             busCount++;
+            capacity--;
         }
 
         public void AddBoatToGarage(string name, string regNr, int numberOfEngines, int numberOfSeats, double length, int parkingTicketNr)
@@ -66,6 +72,7 @@ namespace OvningGarage.Handlers
             Boat boat = new Boat(name, regNr, numberOfEngines, numberOfSeats, length, parkingTicketNr);
             garage.AddVehicle(boat);
             boatCount++;
+            capacity--;
         }
 
 
@@ -80,7 +87,7 @@ namespace OvningGarage.Handlers
                     garage.RemoveVehicle(parkingTicketNr);
                     UpdateCounts(vehicle); // Update vehicle counts
                     vehicleRemoved = true;
-                    
+                    capacity++;
                     Console.WriteLine("Succeed");
                     break;
                 }
@@ -132,17 +139,16 @@ namespace OvningGarage.Handlers
             }
         }
 
-        public static bool CheckGarageEmpty(Garage<Vehicle> garage)
+        public int GetCapacity=>garage.Capacity;
+
+        public bool CheckGarageEmpty()
         {
-            return garage.Count() == 0;
+            return garage.Count == 0;
         }
-        public Garage<Vehicle> GetGarage()
-        {
-            return garage;
-        }
+ 
         public void CheckGarage()
         {
-            if (garage.Count() == 0)
+            if (garage.Count == 0)
             {
                 Console.WriteLine("The garage is empty.");
             }
