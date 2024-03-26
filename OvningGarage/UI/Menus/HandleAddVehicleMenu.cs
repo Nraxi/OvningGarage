@@ -27,24 +27,40 @@ namespace OvningGarage.UI.Menus
                 {
                     case "1":
                         Console.WriteLine("Adding a Car...");
-                        Car(garageHandler);
+                        if (HandleMessages.ConfirmParking())
+                        {
+                            Car(garageHandler); 
+                        }
+                       
                         break;
 
                     case "2":
                         Console.WriteLine("Adding Motorcycle...");
-                        Motorcycle(garageHandler);
+                        if (HandleMessages.ConfirmParking())
+                        {
+                            Motorcycle(garageHandler);
+                        }
                         break;
                     case "3":
                         Console.WriteLine("Adding Airplane...");
-                        Airplane(garageHandler);
+                        if (HandleMessages.ConfirmParking())
+                        {
+                            Airplane(garageHandler);
+                        }
                         break;
                     case "4":
                         Console.WriteLine("Adding Bus...");
-                        Bus(garageHandler);
+                        if (HandleMessages.ConfirmParking())
+                        {
+                            Bus(garageHandler);
+                        }
                         break;
                     case "5":
                         Console.WriteLine("Adding Boat...");
-                        Boat(garageHandler);
+                        if (HandleMessages.ConfirmParking())
+                        {
+                            Boat(garageHandler);
+                        }
                         break;
                     case "0":
                         return;
