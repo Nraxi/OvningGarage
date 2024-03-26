@@ -1,6 +1,4 @@
 ﻿using OvningGarage.Models;
-using System.Dynamic;
-using System.Linq;
 
 namespace OvningGarage.Handlers
 {
@@ -99,7 +97,7 @@ namespace OvningGarage.Handlers
             if (!vehicleRemoved)
             {
                 Console.WriteLine("Vehicle with the specified parking ticket number not found");
-                
+
             }
         }
 
@@ -148,33 +146,39 @@ namespace OvningGarage.Handlers
                 }
             }
         }
+    
+
         public void SearchVehiclesByWord(string searchTerm)
         {
-            List<Vehicle> matchedVehicles = new List<Vehicle>();
+            if (string.IsNullOrWhiteSpace(searchTerm))
+            {
+                Console.WriteLine("Invalid search term. Please enter a valid term.");
+                return;
+            }
+
+            bool foundMatch = false;
 
             foreach (var vehicle in garage)
             {
-                if (vehicle.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
-                    vehicle.RegNr.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+                string vehicleType = GetVehicleType(vehicle);
+
+                if (vehicleType.Equals(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                    vehicle.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                    vehicle.RegNr.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                    vehicle.ParkingTicketNr.ToString().Equals(searchTerm, StringComparison.OrdinalIgnoreCase))
                 {
-                    matchedVehicles.Add(vehicle);
+                    Console.WriteLine($"Type: {vehicleType}, Name: {vehicle.Name}, Registration Number: {vehicle.RegNr}, Parking Ticket Number: {vehicle.ParkingTicketNr}");
+                    foundMatch = true;
                 }
             }
 
-            if (matchedVehicles.Count == 0)
+            if (!foundMatch)
             {
                 Console.WriteLine($"No vehicles found matching the search term '{searchTerm}'.");
             }
-            else
-            {
-                Console.WriteLine($"Found {matchedVehicles.Count} vehicles matching the search term '{searchTerm}':");
-                foreach (var vehicle in matchedVehicles)
-                {
-                    string vehicleType = GetVehicleType(vehicle);
-                    Console.WriteLine($"Type: {vehicleType}, Name: {vehicle.Name}, Registration Number: {vehicle.RegNr}, ticketNR: {vehicle.ParkingTicketNr}");
-                }
-            }
         }
+
+
         private string GetVehicleType(Vehicle vehicle)
         {
             if (vehicle is Car)
@@ -202,7 +206,7 @@ namespace OvningGarage.Handlers
                 return "Unknown";
             }
         }
-       
+
         public int GetCapacity => garage.Capacity;
 
         public bool CheckGarageEmpty()
