@@ -36,6 +36,7 @@ namespace OvningGarage.Initiate
                         return;
                     default:
                         Console.WriteLine("Invalid choice. Please enter a valid number.");
+                        Console.ReadKey();
                         break;
                 }
             }

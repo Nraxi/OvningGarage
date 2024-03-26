@@ -57,11 +57,16 @@ namespace OvningGarage.Initiate
                     case "6":
                         ui.DisplayHandleSearchAttribute(garageHandler);
                         break;
+                    case "7":
+                        exit = true;
+                        Environment.Exit(0);
+                        break;
                     case "0":
                         exit = true;
                         break;
                     default:
                         Console.WriteLine("Ogiltigt val. Försök igen.");
+                        Console.ReadKey();
                         break;
                 }
             } while (!exit);

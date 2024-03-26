@@ -15,7 +15,9 @@ public class ConsoleUI : IUI
         Console.WriteLine("4. Check Garage Status");
         Console.WriteLine("5. Find Vehicle By Registration Number");
         Console.WriteLine("6. Searchbar");
-        Console.WriteLine("0. Exit");
+        Console.WriteLine("7. ShutDown App");
+        Console.WriteLine("0. Go Back to prev Menu");
+        
     }
 
     public void DisplayAddVehicleMenu(GarageHandler garageHandler, int capacity)
