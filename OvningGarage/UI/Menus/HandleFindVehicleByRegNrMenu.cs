@@ -28,10 +28,7 @@ namespace OvningGarage.UI.Menus
                             Console.WriteLine("Vehicle INFO:");
                             Console.WriteLine(vehicle.GetVehicleInfo());
                         }
-                        else
-                        {
-                            Console.WriteLine("Vehicle with the specified registration number not found.");
-                        }
+                        
                         break;
                     case "0":
                         return;
