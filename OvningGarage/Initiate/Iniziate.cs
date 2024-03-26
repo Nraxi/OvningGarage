@@ -14,9 +14,9 @@ namespace OvningGarage.Initiate
             {
                 Console.Clear();
                 Console.WriteLine("Main Menu:");
-                Console.WriteLine("1. Initialize Garage with Default Capacity");
+                Console.WriteLine("1. Initialize Garage with Default Capacity (Default = 10 spots) ");
                 Console.WriteLine("2. Initialize Garage with Custom Capacity");
-                Console.WriteLine("3. Initialize Garage with checking all parameters and set a custom Capacity");
+                Console.WriteLine("3. Initialize Garage with checking all parameters and set a custom Capacity, if skips gets Default Capacity");
                 Console.WriteLine("0. Exit");
 
                 string input = Console.ReadLine()!.Trim();
