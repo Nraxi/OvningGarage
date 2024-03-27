@@ -12,7 +12,7 @@ namespace OvningGarage.UI.Menus
             {
                 Console.Clear();
                 Console.WriteLine("Remove Vehicle Menu:");
-                Console.WriteLine("1. Press 1, to remove a car");
+                Console.WriteLine("1. Press 1, to remove a Vehicle");
                 Console.WriteLine("0. Back to Main Menu");
 
                 input = Console.ReadLine()!;
